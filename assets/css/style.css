@@ -19,3 +19,31 @@ header {
 header .logo {
   width: 150px;
 }
+
+.content {
+  display: flex;
+}
+.card-1 img {
+  width: 260px;
+}
+
+.slider {
+  width: 20%;
+}
+
+.products {
+  width: 80%;
+}
+
+.slider div {
+  width: 233px;
+  height: 44px;
+  margin-bottom: 10px;
+}
+.features {
+  padding-left: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  background-color: wheat;
+}
