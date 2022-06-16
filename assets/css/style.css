@@ -57,21 +57,14 @@ header .logo {
   color: rgb(25, 65, 164);
 }
 
-.products {
-  width: 80%;
-  display: flex;
-}
-
 .products-tab {
   display: flex;
 }
 
 .product-card {
-  width: 23%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  margin: 0px 1%;
 }
 
 .product-card .product-img {
@@ -127,6 +120,16 @@ header .logo {
   background-color: rgb(50, 50, 255);
   font-size: 16px;
   font-weight: 400;
+  cursor: pointer;
+}
+
+.splide__arrow {
+  background-color: white;
+  opacity: 1;
+  border: 1px solid #ddd;
+  top: 30%;
+  width: 40px;
+  height: 40px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -163,13 +166,7 @@ header .logo {
 
   .products {
     width: 100%;
-    overflow-x: scroll;
     margin-left: 5px;
-  }
-
-  .product-card {
-    flex: 0 0 44%;
-    margin: 0px 3%;
   }
 
   .recommend-title {
