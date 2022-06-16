@@ -93,5 +93,6 @@ function addToBasket(name) {
     layout: "topRight",
     text: `${name} adlı ürün sepetine eklendi.`,
     theme: "relax",
+    timeout: 2000,
   }).show();
 }

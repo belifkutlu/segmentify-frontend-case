@@ -151,13 +151,16 @@ header .logo {
 }
 
 @media only screen and (max-width: 768px) {
+  .content {
+    padding: 20px 0px;
+  }
+
   .products-tab {
     flex-direction: column;
   }
 
   .sidebar {
     width: 100%;
-    margin-left: 10px;
     display: flex;
     overflow-x: auto;
   }
@@ -169,17 +172,19 @@ header .logo {
 
   .sidebar .sidebar-item {
     white-space: nowrap;
-    border-bottom: 3px solid rgb(226, 219, 219);
+    border-bottom: 2px solid rgb(226, 219, 219);
     border-radius: 0px;
-    padding-left: 0;
     margin-bottom: 20px;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    padding: 0px 10px;
+    border-radius: 3px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    max-width: 150px;
   }
 
-  .sidebar .sidebar-item:hover {
-    border-color: blue;
-    color: rgb(99, 99, 99);
-    background-color: white;
+  .sidebar .sidebar-item.active {
+    border-bottom: none;
   }
 
   .products {
@@ -188,7 +193,8 @@ header .logo {
   }
 
   .recommend-title {
-    margin: 10px 0px;
+    margin: 0;
+    margin-bottom: 20px;
     font-size: 20px;
   }
 
@@ -197,7 +203,7 @@ header .logo {
   }
 
   .product-card .price {
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 15px;
   }
 
