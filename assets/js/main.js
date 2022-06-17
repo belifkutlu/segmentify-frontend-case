@@ -1,6 +1,6 @@
 let products = [];
 
-fetch("../../product-list.json")
+fetch("/product-list.json")
   .then((response) => response.json())
   .then((productData) => {
     const categories = productData.responses[0][0].params.userCategories;
