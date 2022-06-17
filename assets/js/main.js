@@ -50,23 +50,23 @@ function selectTabBar(productKey) {
 function drawSlider(productKey) {
   const productsWrapper = document.getElementsByClassName("splide__list");
   let splideList = "";
-  products[productKey].forEach(({ name, image, priceText }) => {
+  products[productKey].forEach((product) => {
     splideList += `
       <div class="splide__slide product-card">
         <img
           class="product-img"
-          src="${image}"
+          src="${product.image}"
           alt=""
         />
         <h3 class="product-title">
-          ${name}
+          ${product.name}
         </h3>
-        <div class="price"><span>${priceText}</span></div>
+        <div class="price"><span>${product.priceText}</span></div>
         <div class="shipping">
           <img src="./assets/images/shipping.svg" alt="" />
           <span>Ücretsiz Kargo</span>
         </div>
-        <button class="add-basket-btn" onclick="addToBasket('${name}')">Sepete Ekle</button>
+        <button class="add-basket-btn" onclick="addToBasket(${product})">Sepete Ekle</button>
       </div>
     `;
   });
@@ -101,11 +101,11 @@ function mountSlider() {
   }).mount();
 }
 
-function addToBasket(name) {
+function addToBasket(product) {
   new Noty({
     type: "information",
     layout: "bottomRight",
-    text: `${name} adlı ürün sepetine eklendi.`,
+    text: `${product.name} adlı ürün sepetine eklendi.`,
     theme: "relax",
     timeout: 2000,
   }).show();
