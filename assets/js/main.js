@@ -1,6 +1,8 @@
 let products = [];
 
-fetch("/product-list.json")
+fetch(
+  "https://raw.githubusercontent.com/belifkutlu/segmentify-frontend-case/master/product-list.json"
+)
   .then((response) => response.json())
   .then((productData) => {
     const categories = productData.responses[0][0].params.userCategories;
