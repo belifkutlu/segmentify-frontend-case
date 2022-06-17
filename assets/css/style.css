@@ -58,11 +58,6 @@ header .logo {
   text-overflow: ellipsis;
 }
 
-.tab-bar .tab-bar-item:hover {
-  background-color: rgb(207, 221, 237);
-  color: rgb(25, 65, 164);
-}
-
 .tab-bar .tab-bar-item.active {
   background-color: rgb(207, 221, 237);
   color: rgb(25, 65, 164);

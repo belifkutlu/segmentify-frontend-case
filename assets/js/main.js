@@ -1,57 +1,44 @@
-let products = [];
+let products = null;
 
 fetch(
   "https://raw.githubusercontent.com/belifkutlu/segmentify-frontend-case/master/product-list.json"
 )
-  .then((response) => response.json())
-  .then((productData) => {
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (productData) {
     const categories = productData.responses[0][0].params.userCategories;
     const recommendedProducts =
       productData.responses[0][0].params.recommendedProducts;
-    const productKeys = Object.keys(recommendedProducts);
-    const firstCategoryKey = productKeys[0];
+    const firstCategory = categories[0];
 
     products = recommendedProducts;
 
-    categories.forEach((category) => {
-      const categoriesWrapper = document.getElementsByClassName("tab-bar")[0];
-      categoriesWrapper.innerHTML += `
-        <div 
-          class="tab-bar-item" 
-          data-key="${category}" 
-          onclick="handleTabClick('${category}')">
-          <span>${category}</span>
-        </div>`;
-    });
-
-    drawSlider(firstCategoryKey);
-    selectTabBar(firstCategoryKey);
+    drawCategories(categories);
+    drawSlider(firstCategory);
   });
 
-function handleTabClick(productKey) {
-  selectTabBar(productKey);
-  drawSlider(productKey);
-}
+function drawCategories(categories) {
+  categories.forEach(function (category, index) {
+    const categoriesWrapper = document.querySelector(".tab-bar");
 
-function selectTabBar(productKey) {
-  const tabBars = document.querySelectorAll(".tab-bar-item");
-
-  tabBars.forEach(function (tabBar) {
-    const dataKey = tabBar.getAttribute("data-key");
-
-    if (dataKey == productKey) {
-      tabBar.classList.add("active");
-    } else {
-      tabBar.classList.remove("active");
-    }
+    categoriesWrapper.innerHTML += `
+    <div
+      class="tab-bar-item ${index === 0 ? "active" : ""}"
+      onclick="handleClick('${category}', this)">
+      <span>${category}</span>
+    </div>`;
   });
 }
 
 function drawSlider(productKey) {
-  const productsWrapper = document.getElementsByClassName("splide__list");
-  let splideList = "";
-  products[productKey].forEach((product) => {
-    splideList += `
+  const productArray = products[productKey];
+  const productsWrapper = document.querySelector(".splide__list");
+
+  productsWrapper.innerHTML = "";
+
+  productArray.forEach(function (product) {
+    productsWrapper.innerHTML += `
       <div class="splide__slide product-card">
         <img
           class="product-img"
@@ -66,14 +53,14 @@ function drawSlider(productKey) {
           <img src="./assets/images/shipping.svg" alt="" />
           <span>Ücretsiz Kargo</span>
         </div>
-        <button class="add-basket-btn" onclick="addToBasket(this)" data-test="${product.name.replaceAll(
+        <button class="add-basket-btn" onclick="addToBasket('${product.name.replaceAll(
           '"',
           ""
-        )}">Sepete Ekle</button>
+        )}')">Sepete Ekle</button>
       </div>
     `;
   });
-  productsWrapper[0].innerHTML = splideList;
+
   mountSlider();
 }
 
@@ -104,13 +91,27 @@ function mountSlider() {
   }).mount();
 }
 
-function addToBasket(element) {
-  const name = element.getAttribute("data-test");
+function addToBasket(title) {
   new Noty({
     type: "information",
     layout: "bottomRight",
-    text: `${name} adlı ürün sepetine eklendi.`,
+    text: `${title} adlı ürün sepetine eklendi.`,
     theme: "relax",
     timeout: 2000,
   }).show();
+}
+
+function selectTabBar(element) {
+  const tabBars = document.querySelectorAll(".tab-bar-item");
+
+  tabBars.forEach(function (tabBar) {
+    tabBar.classList.remove("active");
+  });
+
+  element.classList.add("active");
+}
+
+function handleClick(productKey, element) {
+  selectTabBar(element);
+  drawSlider(productKey);
 }
