@@ -66,7 +66,10 @@ function drawSlider(productKey) {
           <img src="./assets/images/shipping.svg" alt="" />
           <span>Ücretsiz Kargo</span>
         </div>
-        <button class="add-basket-btn" onclick="addToBasket(${product})">Sepete Ekle</button>
+        <button class="add-basket-btn" onclick="addToBasket(this)" data-test="${product.name.replaceAll(
+          '"',
+          ""
+        )}">Sepete Ekle</button>
       </div>
     `;
   });
@@ -101,11 +104,12 @@ function mountSlider() {
   }).mount();
 }
 
-function addToBasket(product) {
+function addToBasket(element) {
+  const name = element.getAttribute("data-test");
   new Noty({
     type: "information",
     layout: "bottomRight",
-    text: `${product.name} adlı ürün sepetine eklendi.`,
+    text: `${name} adlı ürün sepetine eklendi.`,
     theme: "relax",
     timeout: 2000,
   }).show();
