@@ -96,7 +96,7 @@ header .logo {
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
-  min-height: 25px;
+  min-height: 24px;
 }
 
 .product-card .price {
